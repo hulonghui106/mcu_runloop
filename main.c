@@ -19,16 +19,7 @@ static int user_key_task(runloop_port_event_t *param) {
   case KEY_DOWN:
     bt_led_set(1);
     break;
-  case KEY_UP:
-    key_led_set(1);
-    break;
-  case KEY_LED:
-    mic_led_set(1);
-    break;
-  case KEY_VOL_DEC:
-    break;
-  case KEY_VOL_ADD:
-    break;
+  
   default:
     break;
   }
