@@ -37,7 +37,6 @@ void key_scan_polling(void) {
     send_user_key(KEY_DOWN);
   }
   last_pd1 = pd1;
-
 }
 
 
