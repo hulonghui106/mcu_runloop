@@ -1,7 +1,6 @@
 #include "main.h"
 #include "runloop.h"
 
-
 void Key_init(void) {
 
   GPIO_Config_T gpioConfig;
@@ -17,7 +16,6 @@ void Key_init(void) {
   gpioConfig.pin = GPIO_PIN_1; // PIN
   GPIO_Config(GPIOD, &gpioConfig);
 
-  
 }
 
 void send_user_key(uint8_t key) {
@@ -28,12 +26,10 @@ void send_user_key(uint8_t key) {
   runloop_msg_post(&event);
 }
 
-
 // 50ms callback
 void key_scan_polling(void) {
   static uint8_t last_pd1 = 1;
  
-
   uint8_t pd1 = GPIO_ReadInputBit(GPIOD, GPIO_PIN_1);
 
   // PD1下降沿

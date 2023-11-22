@@ -19,11 +19,9 @@ static int user_key_task(runloop_port_event_t *param) {
   case KEY_DOWN:
     bt_led_set(1);
     break;
-  
   default:
     break;
   }
-
   return 0;
 }
 
