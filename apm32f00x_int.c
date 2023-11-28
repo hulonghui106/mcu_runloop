@@ -10,6 +10,6 @@ void SVC_Handler(void) {}
 void PendSV_Handler(void) {}
 
 extern uint32_t sysTick;
-void SysTick_Handler(void) { sysTick++; }
+void SysTick_Handler(void) { ++sysTick; }
 
 

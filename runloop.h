@@ -50,7 +50,15 @@ void runloop_timer_start(runloop_timer_t *ptimer, uint32_t ms,
                          uint8_t repeat_flag);
 void runloop_timer_stop(runloop_timer_t *ptimer);
 
+
+//-------------runloop delay----------------
+void user_delay_10us(uint8_t n);
+void user_delay_100us(uint32_t n);
+
 //---------------loop callback---------------------------
 void runloop_proc_timer(void);
 void runloop_proc_list_msg(void);
+
+
+
 #endif

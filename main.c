@@ -29,11 +29,11 @@ static void runloop_enter_sleep(void) {}
 
 int main(void) {
   // system tick setup
-  SysTick_Config(RCM_GetMasterClockFreq() / 1000); // 1ms
-
+  SysTick_Config(RCM_GetMasterClockFreq() / 100); // 10ms
+  
   Led_gpio_init();
   Key_init();
-  USART_Init();
+  // USART_Init();
 
   // 50ms timer
   runloop_timer_init(&timer_50ms, timer_50ms_func);

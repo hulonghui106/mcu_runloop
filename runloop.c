@@ -5,7 +5,6 @@
 
 #include "apm32f00x_wwdt.h"
 
-
 #define PORT_FUNC_N (15)
 
 // port array
@@ -20,7 +19,7 @@ void runloop_msg_post(runloop_port_event_t *evt) {
     return;
 
   runloop_port_event_t *p = malloc(sizeof(runloop_port_event_t));
-  if(p==NULL) {
+  if (p == NULL) {
     WWDT_SoftwareReset();
   }
 
@@ -28,7 +27,7 @@ void runloop_msg_post(runloop_port_event_t *evt) {
   if (evt->param_len > 0) {
     p->param = malloc(evt->param_len);
 
-    if(p->param ==NULL){
+    if (p->param == NULL) {
       WWDT_SoftwareReset();
     }
     memcpy(p->param, evt->param, evt->param_len);
@@ -77,7 +76,7 @@ uint8_t runloop_port_create(runloop_port_func_t port_func) {
   }
 
   if (i == PORT_FUNC_N) {
-    return 0; //fail
+    return 0; // fail
   }
 
   return i + 1;
@@ -125,8 +124,8 @@ void runloop_timer_destroy(runloop_timer_t *ptimer) {
 
 void runloop_timer_start(runloop_timer_t *ptimer, uint32_t ms,
                          uint8_t repeat_flag) {
-  ptimer->period = ms + 1;
-  ptimer->period_bak = ms + 1;
+  ptimer->period = ms / 10 + 1;
+  ptimer->period_bak = ptimer->period;
   ptimer->repeat_flag = repeat_flag;
 }
 
@@ -153,5 +152,20 @@ void runloop_proc_timer(void) {
       }
     }
     ptimer = ptimer->next;
+  }
+}
+
+//-------------runloop delay----------------
+void user_delay_10us(uint8_t n) {
+  for (uint8_t i = 0; i < n; i++) {
+    for (uint32_t j = 0; j < 48; j++) { //48Mhz
+      asm volatile("nop");
+    }
+  }
+}
+
+void user_delay_100us(uint32_t n) {
+  for (uint32_t i = 0; i < n; i++) {
+    user_delay_10us(10);
   }
 }
