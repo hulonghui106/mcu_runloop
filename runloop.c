@@ -10,7 +10,9 @@
 // port array
 static runloop_port_func_t port_func_array[PORT_FUNC_N];
 
-// runloop list
+
+//--------------------- runloop list----------------------
+
 static runloop_port_event_t *event_list_head = NULL;
 static runloop_port_event_t *event_list_tail = NULL;
 
@@ -86,7 +88,10 @@ void runloop_port_delete(uint8_t port_id) {
   port_func_array[port_id - 1] = NULL;
 }
 
-// timer list
+
+
+//-------------------- timer list------------------------
+
 static runloop_timer_t *timer_list_head = NULL;
 static runloop_timer_t *timer_list_tail = NULL;
 void runloop_timer_init(runloop_timer_t *ptimer,
@@ -155,7 +160,9 @@ void runloop_proc_timer(void) {
   }
 }
 
-//-------------runloop delay----------------
+
+//--------------------runloop delay----------------------
+
 void user_delay_10us(uint8_t n) {
   for (uint8_t i = 0; i < n; i++) {
     for (uint32_t j = 0; j < 48; j++) { //48Mhz
